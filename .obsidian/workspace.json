@@ -1,0 +1,238 @@
+{
+  "main": {
+    "id": "988066f791dbcdac",
+    "type": "split",
+    "children": [
+      {
+        "id": "7553d4b7a2ef117f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41c7dd4702313b09",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Apple_tree/Devops/Gitlab.md",
+                "mode": "preview",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Gitlab"
+            }
+          },
+          {
+            "id": "6c9c99344574b8fb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Apple_tree/Linux/ssh&git免密.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ssh&git免密"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1c8d5ab1803e566a",
+    "type": "split",
+    "children": [
+      {
+        "id": "9475112bd8b5a111",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ee9a92717713493d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "e921dd521328f0ee",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "b001447e70724b80",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7a3384a6a24a9c7d",
+    "type": "split",
+    "children": [
+      {
+        "id": "a12cf2c343eb09e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e0f65f203003b204",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Apple_tree/Devops/jenkens.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "jenkens 的反向链接列表"
+            }
+          },
+          {
+            "id": "0ba7e3afbb379c81",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Apple_tree/Linux/keepalived.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "keepalived 的出链列表"
+            }
+          },
+          {
+            "id": "ecc57e9563b915bb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "6e926fd0dcc189b5",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Apple_tree/Prometheus/Prometheus-HA.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Prometheus-HA 的大纲"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:新建数据库": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "mermaid-tools:Open Mermaid Toolbar": false
+    }
+  },
+  "active": "6c9c99344574b8fb",
+  "lastOpenFiles": [
+    "Apple_tree/Devops/harbor.md",
+    "Apple_tree/Devops/jenkens.md",
+    "Apple_tree/Devops/Gitlab.md",
+    "Apple_tree/Ansible/ansible_base.md",
+    "Apple_tree/Ansible/Ansible加密.md",
+    "Apple_tree/Ansible/Ansible安装.md",
+    "Apple_tree/Prometheus/Prometheus Operator.md",
+    "Apple_tree/Prometheus/Prometheus-HA.md",
+    "Apple_tree/Linux/ssh&git免密.md",
+    "Apple_tree/Linux/zk升级&鉴权.md",
+    "Apple_tree/Linux/vsftp.md",
+    "Apple_tree/Linux/server漏洞修复.md",
+    "Apple_tree/Linux/nginx.md",
+    "Apple_tree/Linux/nfs高可用搭建.md",
+    "Apple_tree/Linux/linux磁盘挂载.md",
+    "Apple_tree/Linux/Linux用户&权限管理.md",
+    "Apple_tree/Linux/linux单用户&维护模式.md",
+    "Apple_tree/Linux/Linux优化.md",
+    "Apple_tree/Linux/keepalived.md",
+    "Apple_tree/Linux/icmp&tcp时间戳漏洞.md",
+    "Apple_tree/Linux/HAProxy.md",
+    "Apple_tree/Linux/frp内网穿透.md",
+    "Apple_tree/Linux/conda.md",
+    "Apple_tree/Kubernetes/Kubenertes 离线安装.md",
+    "附件/Pasted image 20251228201009.png",
+    "附件",
+    "Apple_tree/Linux/firewall/Netfilter.md",
+    "Apple_tree/Linux/firewall/firewalld.md",
+    "Apple_tree/Linux/firewall/images/2022-03-07-netfilter-hookfn1.png",
+    "Apple_tree/Linux/firewall/images/2022-03-07-netfilter-flow.png",
+    "Apple_tree/Linux/firewall/images/network-path.png",
+    "Apple_tree/Linux/firewall/images/iptables-chain-4de09730.png",
+    "Apple_tree/Linux/firewall/images/iptables-6d948ee3.png",
+    "Apple_tree/Linux/firewall/images/2022-03-07-NF_HOOK.png",
+    "Apple_tree/Linux/firewall/images/2022-03-07-netfilter-hooks-stack.png",
+    "Apple_tree/Linux/firewall/images/2022-03-07-netfilter-hookfn2.png",
+    "Apple_tree/Linux/firewall/images",
+    "Apple_tree/Python/Python-100-Days-master/res/ABF827024EA535099DC0E6A66A336C51.png",
+    "Apple_tree/Linux/firewall",
+    "Apple_tree/Prometheus",
+    "Apple_tree/Python/AI",
+    "Apple_tree/github.com/Ziphtracks/JavaLearningmanual/tree/master/docs/Database",
+    "Apple_tree/github.com/Ziphtracks/JavaLearningmanual/tree/master/docs",
+    "Apple_tree/github.com/Ziphtracks/JavaLearningmanual/tree/master",
+    "Apple_tree/github.com/Ziphtracks/JavaLearningmanual/tree",
+    "Apple_tree/github.com/Ziphtracks/JavaLearningmanual"
+  ]
+}

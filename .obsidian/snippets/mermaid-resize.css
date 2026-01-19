@@ -1,0 +1,15 @@
+/* 默认适应页面宽度 */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: max-width 0.3s ease-in-out; /* 添加过渡效果 */
+}
+
+/* 悬停时放大并启用滚动条 */
+.mermaid:hover svg {
+    max-width: 250%; /* 放大到原始尺寸的250% */
+    /* width: auto; /* 也可以使用 auto 还原实际尺寸 */
+    overflow: scroll; /* 如果超出容器，显示滚动条 */
+}
