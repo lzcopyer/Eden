@@ -1,8 +1,7 @@
-# mysqlslap 语法参数
 
-`mysqlslap [options]`
+> MySQLSlap 是 MySQL 常用压测工具
 
-## 常用参数
+# 常用参数
 
 ``` bash
 --auto-generate-sql, -a 自动生成测试表和数据，表示用mysqlslap工具自己生成的SQL脚本来测试并发压力。
@@ -23,7 +22,7 @@
 --debug-info, -T 打印内存和CPU的相关信息。
 ```
 
-## 测试实例
+# 测试实例
 
 ``` bash
 # 单线程测试。测试做了什么。

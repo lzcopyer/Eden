@@ -1,45 +1,42 @@
-# MariaDB
 
-## Install
+# 安装依赖
 
-安装依赖  
 `yum install -y libaio`  
-解压  
-`tar -xvzf mariadb-10.2.12-linux-x86_64.tar.gz -C {{mariadbhome/base}}`  
-修改配置文件
+
+# 准备配置文件
 
 ``` bash
-cp /usr/local/mariadb/support-files/my-medium.cnf {{mariadbhome/base}}/conf/my.cnf
+cp /usr/local/mariadb/support-files/my-medium.cnf ${mariadbhome/base}/conf/my.cnf
 # 编辑配置文件/etc/my.cnf，在[mysqld]块中添加basedir全局目录将默认的数据目录，日志目录，pid文件都放置在basedir目录下，配置如下：
 [mysqld]
 port        = 3306
-socket      = {{mariadbhome}}/tmp/mysql.sock
-user    = {{user}}
-basedir = {{mariadbhome}}/base
-datadir = {{mariadbhome}}/data
-log_error = {{mariadbhome}}/log/mariadb.err
-pid-file = {{mariadbhome}}/tmp/mariadb.pid
+socket      = ${mariadbhome}/tmp/mysql.sock
+user    = ${user}
+basedir = ${mariadbhome}/base
+datadir = ${mariadbhome}/data
+log_error = ${mariadbhome}/log/mariadb.err
+pid-file = ${mariadbhome}/tmp/mariadb.pid
 ```
 
-初始化数据库  
-`{{mariadbhome/base}}scripts/mysql_install_db --defaults-file={{mariadbhome/base}}/conf/my.cnf`
+# 初始化数据库  
 
-加入到系统启动中
+`${mariadbhome/base}scripts/mysql_install_db --defaults-file={mariadbhome/base}/conf/my.cnf`
+
+# 配置service文件
 
 ``` bash
 cp /usr/local/mariadb/support-files/mysql.server /etc/init.d/mariadb
 chmod +x /etc/init.d/mariadb
-chkconfig --add {{user}}
-chkconfig {{user}} on
+chkconfig --add ${user}
+chkconfig ${user} on
 ```
 
-登录mariadb  
-`mariadb/bin/mysql -uroot -p`  
-**初始化之后第一次登录不需要输入密码，直接回车**
+> [!tip] 提示
+>初始化之后第一次登录不需要输入密码，`mariadb/bin/mysql -uroot -p` 然后直接回车。
 
-## mariadb双主搭建
+# mariadb双主配置
 
-在`{{mariadbhome/base}}/conf/my.cnf`中添加以下选项：
+在`${mariadbhome/base}/conf/my.cnf`中添加以下选项：
 
 ``` bash
 server-id  = 1
@@ -75,14 +72,16 @@ expire_logs_days = 10
 
 `expire_logs_days = 10`日志保存天数：10天。
 
-修改数据库配置之后重启
+_修改数据库配置之后重启_
 
-创建备份用户
+## 创建备份用户
 
 ``` bash
 MariaDB [(none)]> grant replication slave, replication client on *.* to 'hello32'@'192.168.11.32' identified by '123456x';
 mysql> flush privileges;
 ```
+
+## 检查_binlog_文件
 
 接着马上查看binlog文件的position（偏移）和File（日志文件）的值:
 
@@ -96,7 +95,7 @@ MariaDB [(none)]> show master status;
 1 row in set (0.01 sec)
 ```
 
-在从库进行同步
+## 在从库进行同步
 
 ``` bash
 MariaDB [(none)]> change master to master_host='192.168.11.32',master_user='hello31', master_password='123456x', master_port=3306, master_log_file='mysql-bin.000007', master_log_pos=358, master_connect_retry=30;
