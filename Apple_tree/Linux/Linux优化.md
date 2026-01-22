@@ -4,6 +4,7 @@
 `sysctl -w $NEW_PARAMETER`
 
 **永久修改内核参数**
+
 ``` bash
 #!/bin/bash
 OLD_PARAMETER=""
@@ -19,9 +20,11 @@ fi
 ```
 
 **刷新参数**
+
 `sysctl -p`
 
 **禁用swap**
+
 ``` bash
 swapoff -a
 sed -i '/swap/ s/^/#/g' /etc/fstab
@@ -34,27 +37,68 @@ sysctl -w vm.swappiness=0
 **大内存支持**
 `vm.nr_hugepages=1024`
 
-**文件描述符扩容**
-``` bash
-fs.file-max=655360
+### **文件描述符扩容**
 
-# 高并发 Web 服务器
-cat << EOF > /etc/security/limits.conf
-nginx   soft    nofile  655350
-nginx   hard    nofile  655350
-nginx   soft    nproc   655350
-nginx   hard    nproc   655350
-EOF
+**文件句柄数优化**
 
-# 数据库服务器
+``` Bash
+#   将原有文件底部“nofile”、“nproc”相关内容注释掉，然后将下述内容追加至文件末尾
+* soft nofile 655350
+* hard nofile 655350
+* soft nproc 655350
+* hard nproc 655350
+
+# nproc: 操作系统级别对每个用户创建的进程数的限制
+# nofile: 每个进程可以打开的文件数的限制
+
+# nofile不能大于“/proc/sys/fs/nr_open”，否则需要先调整“/proc/sys/fs/nr_open”，对应/etc/sysctl.conf中的fs.nr_open参数
+```
+
+优化*/etc/sysctl.conf*
+
+``` Bash
+# 将下述内容追加至文件末尾
+fs.file-max = 1024000
+
+fs.nr_open = 2000000
+net.ipv4.ip_local_port_range = 1024 65535
+net.core.somaxconn = 32768
+net.ipv4.tcp_max_syn_backlog = 16384
+net.core.netdev_max_backlog = 16384
+
+net.core.rmem_default = 262144
+net.core.wmem_default = 262144
+net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.core.optmem_max = 16777216
+
+net.ipv4.tcp_rmem = 1024 4096 16777216
+net.ipv4.tcp_wmem = 1024 4096 16777216
+
+net.netfilter.nf_conntrack_max = 1000000
+net.netfilter.nf_conntrack_tcp_timeout_time_wait = 30
+
+net.ipv4.tcp_max_tw_buckets = 1048576
+
+net.ipv4.tcp_fin_timeout = 5
+net.ipv4.tcp_tw_timeout = 5
+```
+
+
+**数据库服务器优化**
+
+``` Bash
 cat << EOF > /etc/security/limits.conf
 mysql   soft    nofile  655350
 mysql   hard    nofile  655350
 mysql   soft    memlock unlimited
 mysql   hard    memlock unlimited
 EOF
+```
 
-# Java 应用
+**Java 应用优化**
+
+``` Bash
 # 在启动脚本中添加
 ulimit -n 100000
 ulimit -l unlimited
@@ -103,7 +147,9 @@ reboot
 ---
 
 #### 🔒 二、永久关闭 SELinux（需重启生效）
-#### **方法 1：修改配置文件（推荐）**
+
+##### **方法 1：修改配置文件（推荐）**
+
 1. **编辑配置文件**  
    ```bash
    sudo vi /etc/selinux/config
@@ -126,13 +172,15 @@ reboot
    getenforce # 输出 "Disabled"
    ```
 
-#### **方法 2：通过内核参数禁用（适用于无 `/etc/selinux/config` 的场景）**
-1. **修改 GRUB 配置**  
+##### **方法 2：通过内核参数禁用（适用于无 `/etc/selinux/config` 的场景）**
+1. **修改 GRUB 配置** 
+	
    ```bash
    sudo grubby --update-kernel ALL --args selinux=0
    ```
      
 2. **重启生效**  
+	
    ```bash
    sudo reboot
    ```
@@ -156,22 +204,23 @@ reboot
 
 3. **替代方案**  
    - **保持宽容模式**：  
-     ```bash
+     ```Bash
      SELINUX=permissive  # 记录日志但不拦截，便于调试
      ```
    - **针对性调整策略**：  
      - 使用 `semanage` 修改文件上下文：  
-       ```bash
+       ```Bash
        sudo semanage fcontext -a -t httpd_sys_content_t "/var/www/html(/.*)?"
        ```
-     - 用 `setsebool` 调整布尔值：  
-       ```bash
+     - 用 `setsebool` 调整布尔值：
+       ```Bash
        sudo setsebool -P httpd_can_network_connect on
        ```
 
 ## 网络优化
 
 **TCP缓冲区调优**
+
 ``` bash
 net.ipv4.tcp_rmem = 8192 16777216 33554432  # 接收缓冲区
 net.ipv4.tcp_wmem = 8192 65536 33554432     # 发送缓冲区
@@ -180,12 +229,14 @@ net.ipv4.tcp_wmem = 8192 65536 33554432     # 发送缓冲区
 ## 安全优化
 
 **内核级防护**
+
 ``` bash
 kernel.kptr_restrict=1      # 隐藏内核地址信息
 net.ipv4.icmp_echo_ignore_broadcasts=1  # 防Ping洪水
 ```
 
 **修改用户登陆和操作历史记录**
+
 ``` bash
 cat << EOF > /etc/profile
 HISTSIZE=5000 

@@ -25,8 +25,8 @@ mount -t nfs 192.168.168.201:/data /haha
 umount /haha
 
 #禁用v4以下版本
-sed -i 's/#vers2=y/vers2=n/g' /etc/nfs.conf
-sed -i 's/#vers3=y/vers3=n/g' /etc/nfs.conf
+sed -i 's/^#vers2=y/^vers2=n/g' /etc/nfs.conf
+sed -i 's/^#vers3=y/^vers3=n/g' /etc/nfs.conf
 systemctl restart nfs-server
 ```
 

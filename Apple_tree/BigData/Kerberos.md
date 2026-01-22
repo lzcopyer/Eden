@@ -37,6 +37,10 @@ ktadd -norandkey -k /etc/security/keytabs/hive.keytab hive/hive@BIGDATA.COM
 
 `cpw -pw new_password user/admin`
 
+### 修改加密算法
+
+`modprinc -e aes128-cts-hmac-sha1-96 user/admin`
+
 ### 删除凭证
 
 `delprinc user/admin`

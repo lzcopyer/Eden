@@ -14,7 +14,7 @@
 - copy，template的模块里src参数所使用的文件，甚至是二进制文件。
 - playbook里用到的某个字符串参数也可以加密（Ansible>=2.3）
 
-# 创建加密
+## 加密文件
 
 **创建加密文件**  
 `ansible-vault create foo.yml`  
@@ -119,41 +119,25 @@ the_name: !vault |
           ...
 ```
 
-# 使用加密文件
+## 使用加密文件
 
->上面我们主要介绍了密码文件/变量的创建方式，接下来介绍下如何使用。  
->ansible执行playbook时，可以通过交互式或指定密码文件的方式来解密文件。  
-
-## 交互式  
-
-执行playbook时在终端以交互式的形式输入密码。而且ansible版本<=2.4，该方式只支持一个密码，不能指定vault_id。  
-
-`ansible-playbook --ask-vault-pass site.yml`
-  
+上面我们主要介绍了密码文件/变量的创建方式，接下来介绍下如何使用。  
+ansible执行playbook时，可以通过交互式或指定密码文件的方式来解密文件。  
+交互式  
+执行playbook时在终端以交互式的形式输入密码，示例：  
+ansible版本<=2.4，该方式只支持一个密码，不能指定vault_id。  
+`ansible-playbook --ask-vault-pass site.yml`  
 ansible2.4版本后，对应命令行如下，该方式只支持一个密码，能指定vault_id：  
-
 `ansible-playbook --vault-id  dev@prompt  playbooks/test_vault.yaml`  
-
-## 指定密码文件  
-
+指定密码文件  
 另外一种使用方式，是将密码放在某个文件内，执行playbook时，通过指定该密码文件进行解密。  
-
 ansible版本<=2.4，可以使用「--vault-password」参数：  
-
 `ansible-playbook --vault-password-file dev-password site.yml`  
-
 ansible2.4版本以后，又增加了「--vault-id」的参数，用来指定密码文件：  
-
 `ansible-playbook --vault-id /path/to/my/vault-password-file site.yml`  
-
 从可执行脚本获取密码：  
-
 `ansible-playbook --vault-id my-vault-password.py`  
-
 指定密码文件同时指定vault_id:  
-
 `ansible-playbook --vault-id dev@prompt site.yml`
-
 指定多vault_id+多密码文件：  
-
 `ansible-playbook --vault-id dev@dev-password --vault-id prod@prompt site.yml`
