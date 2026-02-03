@@ -6,6 +6,8 @@
 
 ```Bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc
+nvm install node
 ```
 
 ## 部署
@@ -36,6 +38,6 @@ openclaw config set channels.feishu '{
 
 ## 参考链接
 
-[https://docs.openclaw.ai/start/getting-started#3-5-quick-verify-2-min](docs.openclaw.ai)
-[https://github.com/BytePioneer-AI/moltbot-china](openclaw-china)
-[https://itho.cn/574.html](飞书机器人配置)
+[docs.openclaw.ai](https://docs.openclaw.ai/start/getting-started#3-5-quick-verify-2-min)  
+[openclaw-china](https://github.com/BytePioneer-AI/moltbot-china)  
+[飞书机器人配置](https://itho.cn/574.html)
