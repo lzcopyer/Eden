@@ -32,7 +32,6 @@ openclaw config set channels.feishu '{
   "appId": "cli_xxxxxx",
   "appSecret": "your-app-secret",
   "sendMarkdownAsCard": true
-
 }' --json
 ```
 
